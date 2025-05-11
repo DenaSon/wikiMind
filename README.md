@@ -31,54 +31,19 @@ composer require denason/wikimind
 
 You can use the global `wikiMindQuery()` helper or dependency injection with the interface to access all features.
 
-### 1. Get entity labels by SPARQL
+
+### Using Helper : 
 
 ```php
-$entity = 'Q42'; // Example: Q42 is the Wikidata entity ID for Douglas Adams
+$streetEntity = \Denason\Wikimind\Facades\Wikimind::getEntityId('street'); // Q79007
 
-$results = wikiMindQuery()
-    ->lang('en')
-    ->where('item', 'P31', $entity)
-    ->select(['itemLabel'])
-    ->limit(5)
-    ->get('array');
-```
-
-### 2. Get full description of an entity (Wikidata)
-
-```php
-$desc = wikiMindQuery()
+return wikiMindQuery()
     ->lang('fa')
-    ->where('item', 'P31', 'Q79007') // Example: Q79007 represents "street"
-    ->select(['itemLabel', 'description'])
-    ->limit(5)
-    ->get('array');
-```
-
-### 3. Filter entities with a condition (e.g., distinct results)
-
-```php
-$results = wikiMindQuery()
-    ->lang('fa')
-    ->where('item', 'P31', 'Q42')
-    ->distinct()
-    ->select(['itemLabel'])
-    ->limit(5)
-    ->get('collection');
-```
-
-### 4. Use the fluent interface to build complex queries
-
-```php
-$entity = 'Q42'; // Entity ID for "Douglas Adams"
-
-$results = wikiMindQuery()
-    ->lang('en')
-    ->where('item', 'P31', $entity)
-    ->optional('item', 'P2044', 'elevation')
-    ->select(['itemLabel', 'elevation'])
-    ->limit(10)
-    ->distinct()
+    ->where('street', 'P31', $streetEntity)
+    ->where('street', 'P17', 'Q794') // ایران
+    ->select(['street', 'streetLabel'])
+    ->filter('!BOUND(?place)')
+    ->limit(50)
     ->get('collection');
 ```
 
@@ -102,21 +67,6 @@ All methods are accessible via the `wikiMindQuery()` helper or through dependenc
 
 Instead of using the global `wikiMindQuery()` helper, you can inject the `WikimindInterface` directly into your controller, service, or job.
 
-#### Example: Using WikimindInterface in a Controller
-
-```php
-use Denason\Wikimind\WikimindInterface;
-
-class ArticleController extends Controller
-{
-    public function show(WikimindInterface $wiki)
-    {
-        $summary = $wiki->summary('Iran');
-
-        return view('article.show', compact('summary'));
-    }
-}
-```
 
 This approach takes advantage of Laravel's service container to resolve the interface to its concrete implementation automatically.
 
