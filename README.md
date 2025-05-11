@@ -1,9 +1,11 @@
 # WikiData API (wikiMind) Laravel Package
 
-📦
+🧠
 A robust and developer-friendly Laravel package for querying **Wikidata** using **SPARQL**. With this package, you can seamlessly connect your Laravel application to Wikidata's vast and structured knowledge base, enabling access to entities, properties, and their relations in a programmatic and efficient manner.
 
 Whether you're building educational tools, conducting data analysis, or enriching content with real-time knowledge, this package provides a fluent interface to fetch structured data directly from Wikidata.
+
+Perfect for applications needing semantic data, linked entities, and flexible filters — with full Laravel
 
 Say goodbye to raw API calls! With this package, you get full **Laravel Facade** support, **smart query enhancements**, and a streamlined interface for precise data retrieval.
 
