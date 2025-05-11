@@ -1,0 +1,44 @@
+{
+    "name": "denason/wikimind",
+    "description": "A powerful Laravel package for accessing structured knowledge from Wikidata. WikiMind helps you extract entities, properties, relationships, and metadata with intelligent query support. Ideal for building smart apps, auto-blogging systems, and AI-powered knowledge tools.",
+    "authors": [
+        {
+            "name": "Mohammad Asadi Sisakht",
+            "email": "mohammad.asadi.sisakht@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/denason/wikimind/issues",
+        "source": "https://github.com/denason/wikimind"
+
+    },
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Denason\\Wikimind\\": "src/"
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Denason\\Wikimind\\WikimindServiceProvider"
+            ],
+            "aliases": {
+                "wikimind": "Denason\\Wikimind\\Facades\\Wikimind"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.0",
+        "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0"
+
+    }
+}
